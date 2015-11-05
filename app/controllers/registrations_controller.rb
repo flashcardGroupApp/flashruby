@@ -4,7 +4,8 @@ class RegistrationsController < ApplicationController
     @user = User.new(full_name: params[:full_name],
                      email: params[:email],
                      username: params[:username],
-                     password: params[:password])
+                     password: params[:password],
+                     password_confirmation: params[:password])
     if @user.save
       render "create.json.jbuilder", status: :created
       # render json: { user: @user }, status: :ok
@@ -31,6 +32,7 @@ class RegistrationsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       @user.destroy
+      render json: {success: "User deleted" }, status: :ok
     else
       render json: { error: "Invalid email (#{params[:email]}) or password." },
              status: :unauthorized
