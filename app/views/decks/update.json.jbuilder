@@ -1,6 +1,6 @@
-json.deck do
+#json.deck do
   json.title @deck.title
-end
+#end
 
 
 

@@ -97,3 +97,71 @@ If the user information was not correct, you should receive a `401 Unauthorized`
     ]
 }
 ```
+
+## Create a Deck (Authenticated)
+```
+POST /decks
+```
+
+**Params**
+
+`title`: `String`
+
+**Response**
+
+If the deck creation was successful, you should receive a `201 Created` status code, and a JSON body:
+```
+{
+    "id": 123,
+    "user_id": 5,
+    "title": "Cast of Flash Gordon"
+}
+```
+
+## Get a Deck Title (Authenticated)
+```
+GET /decks/:id
+```
+
+**Response**
+
+If the deck with that ID is found, you should receive a `200 OK` status code, and a JSON body:
+
+```
+{
+    "title": "Cast of Flash Gordon"
+}
+```
+
+## Edit a Deck Title (Authenticated)
+```
+PUT /decks/:id
+```
+
+**Params**
+`title`: `String`
+
+**Response**
+
+If the update was successful, you should receive a `200 OK` status code, and a JSON body:
+
+```
+{
+    "title": "Cast of Rocky Horror Picture Show"
+}
+```
+
+## Delete a Deck (Authenticated)
+```
+DELETE /decks/:id
+```
+
+**Response**
+
+If the deck was successfully deleted, you should receive a `200 OK` status code, and a JSON body:
+
+```
+{
+    "delete": "Success"
+}
+```

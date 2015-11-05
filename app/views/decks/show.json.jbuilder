@@ -1,4 +1,4 @@
-json.deck do
+#json.deck do
 json.extract! @deck, :title
 
-end
+#end

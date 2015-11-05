@@ -1,8 +1,8 @@
 class DecksController < ApplicationController
+  before_action :authenticate_user!
 
   def create
-   @deck =  Deck.new(user_id: params[:user_id], #this might just be params :id instead of :user_id
-                     title: params[:title])
+    @deck = Deck.new(user_id: current_user.id, title: params[:title])
     if @deck.save
       render "create.json.jbuilder", status: :created
     else
@@ -12,23 +12,20 @@ class DecksController < ApplicationController
   end
 
   def show
-    @deck = Deck.find_by(title: params[:title])
+    @deck = Deck.find(params[:id])
     render "show.json.jbuilder", status: :ok
   end
 
    def update
-     @deck = Deck.update(title: params[:title])
-     render "update.json.jbuilder", status: :updated
-   else
-     render json: {errors: @user.errors.full_messages },
-            status: :unprocessable_entity
-
+     @deck = Deck.find(params[:id])
+     @deck.update(title: params[:title])
+     render "update.json.jbuilder", status: :ok
    end
 
-  def delete
-    @deck = Deck.find_by(title: params[:title])
+  def destroy
+    @deck = Deck.find(params[:id])
     @deck.destroy
-    render status: :no_content
+    render "destroy.json.jbuilder", status: :ok
   end
 
 end
