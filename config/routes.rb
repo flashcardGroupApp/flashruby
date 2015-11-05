@@ -17,13 +17,13 @@ Rails.application.routes.draw do
 
   ## CARD ROUTES
 
-  get "decks/:id/cards/:id", to: "cards#show", as: "card"
+  get "cards/:id", to: "cards#show", as: "card"
 
   post "deck/:id/cards", to: "cards#create"
 
-  put "deck/:id/cards/:id", to: "cards#update"
+  put "cards/:id", to: "cards#update"
 
-  delete "deck/:id/cards/:id", to: "cards#destroy"
+  delete "cards/:id", to: "cards#destroy"
 
 
 
