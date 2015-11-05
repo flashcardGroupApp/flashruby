@@ -69,13 +69,14 @@ If the user could not be deleted, you should receive a `401 Unauthorized` status
 }
 ```
 
-## Loggin In
+## Logging In
 ```
 POST /login
 ```
 
 **Params**
-`username`: `String`
+
+`username`: `String`<br>
 `password`: `String`
 
 **Response**
