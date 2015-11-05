@@ -1,4 +1,34 @@
 Rails.application.routes.draw do
+## Registration Routes
+  post "/signup", to: "registrations#create"
+  delete "/signup", to: "registrations#destroy"
+
+  post "/login", to: "registrations#login"
+
+  ## DECK ROUTES
+
+  get "decks/:id", to: "decks#show", as: "deck"
+
+  post "decks", to: "decks#create"
+
+  put "decks/:id", to: "decks#update"
+
+  delete "decks/:id", to: "decks#destroy"
+
+  ## CARD ROUTES
+
+  post "deck/:id/cards", to: "cards#create"
+
+  put "deck/:id/cards/:id", to: "cards#update"
+
+  delete "deck/:id/cards/:id", to: "cards#destroy"
+
+
+
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
