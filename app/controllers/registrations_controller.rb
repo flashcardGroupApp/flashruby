@@ -1,7 +1,8 @@
 class RegistrationsController < ApplicationController
 
   def create
-    @user = User.new(email: params[:email],
+    @user = User.new(full_name: params[:full_name],
+                     email: params[:email],
                      username: params[:username],
                      password: params[:password])
     if @user.save
