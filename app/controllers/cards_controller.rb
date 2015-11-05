@@ -2,7 +2,7 @@ class CardsController < ApplicationController
 
   def create
     @deck = Deck.find(params[:id])
-    @deck.cards.create(deck_id: params[:id], question: params[:question], anser: params[:answer])
+    @deck.cards.create(question: params[:question], anser: params[:answer])
 
     if @deck.save
       render "create.json.jbuilder", status: :created
@@ -13,23 +13,19 @@ class CardsController < ApplicationController
   end
 
   def update
-    @deck = Deck.find(params[:id])
-    @deck.cards.update(question: params[:question], answer: params[:answer])
-
-    if @deck.save
-      render "update.json.jbuilder", status: :updated
-    else
-      render json: {errors: @user.errors.full_messages},
-             status: :unprocessable_entity
-    end
+    ## logic to make sure params aren't empty
+    ## logic to make sure user is allowed to update card (belong to user)
+    @card = Card.find(params[:id])
+    @card.update(question: params[:question], answer: params[:answer])
+    render "update.json.jbuilder", status: :ok
 
   end
 
-  # def destroy
-  #   @deck = Deck.find_by(params[:id], )
-  #   @deck.cards.destroy
-  #
-  # end
+   def destroy
+     @card = Card.find(params[:id])
+     @card.destroy
+
+   end
 
 
 end
