@@ -145,6 +145,29 @@ If the deck with that ID is found, you should receive a `200 OK` status code, an
 }
 ```
 
+## Show All Decks
+```
+GET /decks
+```
+
+**Response**
+
+Lists an array of all decks in the database. You should receive a `200 OK` status code, and a JSON body:
+```
+[
+  {
+    "id": 1,
+    "user_id": 1,
+    "title": "Cast of Flash Gordon"
+  },
+  {
+    "id": 2,
+    "user_id": 1,
+    "title": "Cast of Saturday Night Fever"
+  }
+]
+```
+
 ## Edit a Deck Title
 ```
 PUT /decks/:id
