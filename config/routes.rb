@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   ## DECK ROUTES
 
-  get "user/:id/decks/:id", to: "decks#index"
+  get "decks/", to: "decks#index"
 
   get "decks/:id", to: "decks#show", as: "deck"
 

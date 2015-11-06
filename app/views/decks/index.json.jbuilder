@@ -1,1 +1,1 @@
-json.array! @decks, :user_id, :title
+json.array! @decks, :id, :user_id, :title
