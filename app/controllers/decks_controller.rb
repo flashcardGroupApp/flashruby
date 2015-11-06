@@ -16,6 +16,15 @@ class DecksController < ApplicationController
     render "show.json.jbuilder", status: :ok
   end
 
+  def index
+    # @deck = Deck.find_all(user_id: params[:userid], title: params[:title])
+    # @decks = Deck.order(:created_at => :desc).page(params[:page] || 1).per(10)
+    @decks = Deck.all
+    #
+    # @deck = Deck.where(user_id: current_user.id).find_each
+  end
+  # :order_by => 'divisions.name DESC'
+
    def update
      @deck = Deck.find(params[:id])
      @deck.update(title: params[:title])
