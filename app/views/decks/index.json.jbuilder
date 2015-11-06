@@ -1,0 +1,1 @@
+json.array! @decks, :user_id, :title

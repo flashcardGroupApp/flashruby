@@ -20,6 +20,7 @@ class DecksController < ApplicationController
     # @deck = Deck.find_all(user_id: params[:userid], title: params[:title])
     # @decks = Deck.order(:created_at => :desc).page(params[:page] || 1).per(10)
     @decks = Deck.all
+    render "index.json.jbuilder"
     #
     # @deck = Deck.where(user_id: current_user.id).find_each
   end
