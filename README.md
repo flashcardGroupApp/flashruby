@@ -1,5 +1,5 @@
 # Flash Ruby
-An API you can use to build a flashcard game
+An API you can use to build a flashcard game. The server is located at: [http://secret-shore-7735.herokuapp.com/](http://secret-shore-7735.herokuapp.com/)
 
 # API
 ### Authentication Notes
@@ -98,7 +98,7 @@ If the user information was not correct, you should receive a `401 Unauthorized`
 }
 ```
 
-## Create a Deck (Authenticated)
+## Create a Deck
 ```
 POST /decks
 ```
@@ -118,7 +118,7 @@ If the deck creation was successful, you should receive a `201 Created` status c
 }
 ```
 
-## Get a Deck Title (Authenticated)
+## Show a Deck
 ```
 GET /decks/:id
 ```
@@ -129,11 +129,23 @@ If the deck with that ID is found, you should receive a `200 OK` status code, an
 
 ```
 {
-    "title": "Cast of Flash Gordon"
+  "title": "Cast of Flash Gordon",
+  "deck": [
+    {
+      "id": 1,
+      "question": "Sam J. Jones",
+      "answer": "Flash Gordon"
+    },
+    {
+      "id": 3,
+      "question": "Melody Anderson",
+      "answer": "Dale Arden"
+    }
+  ]
 }
 ```
 
-## Edit a Deck Title (Authenticated)
+## Edit a Deck Title
 ```
 PUT /decks/:id
 ```
@@ -151,7 +163,7 @@ If the update was successful, you should receive a `200 OK` status code, and a J
 }
 ```
 
-## Delete a Deck (Authenticated)
+## Delete a Deck
 ```
 DELETE /decks/:id
 ```
@@ -160,6 +172,82 @@ DELETE /decks/:id
 
 If the deck was successfully deleted, you should receive a `200 OK` status code, and a JSON body:
 
+```
+{
+    "delete": "Success"
+}
+```
+
+## Show a Single Card
+```
+GET /cards/:id
+```
+
+**Response**
+
+If the card was successfully found, you should receive a `200 OK` status code and a JSON body:
+```
+{
+  "card": {
+    "id": 1,
+    "question": "Max von Sydow",
+    "answer": "Ming the Merciless"
+  }
+}
+```
+
+## Create a Card
+```
+POST /deck/:id/cards
+```
+
+**Params**
+`question`: `String`<br>
+`answer`: `String`
+
+**Response**
+
+If the card creation was successful, you should receive a `201 Created` status code, and a JSON body:
+```
+{
+  "card": {
+    "id": 9,
+    "question": "Chaim Topol",
+    "answer": "Dr. Hans Zarkov"
+  }
+}
+```
+
+## Edit a Card
+```
+PUT /cards/:id
+```
+
+**Params**
+`question`: `String`<br>
+`answer`: `String`
+
+**Response**
+
+If the card update was successful, you should receive a `200 OK` status code, and a JSON body:
+```
+{
+  "card": {
+    "id": 9,
+    "question": "Tim Curry",
+    "answer": "Dr. Frank-N-Furter"
+  }
+}
+```
+
+## Delete a Card
+```
+DELETE /cards/:id
+```
+
+**Response**
+
+If the card was successfully deleted, you should receive a `200 OK` status code, and a JSON body:
 ```
 {
     "delete": "Success"
