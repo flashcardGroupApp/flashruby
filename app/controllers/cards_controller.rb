@@ -14,7 +14,7 @@ class CardsController < ApplicationController
       @card = Card.last
       render "create.json.jbuilder", status: :created
     else
-      render json: {errors: @user.errors.full_messages },
+      render json: {errors: @card.errors.full_messages },
              status: :unprocessable_entity
       end
   end
@@ -26,7 +26,7 @@ class CardsController < ApplicationController
     if @card.save
       render "update.json.jbuilder", status: :updated
     else
-      render json: {errors: @user.errors.full_messages},
+      render json: {errors: @card.errors.full_messages},
              status: :unprocessable_entity
     end
 
@@ -34,7 +34,12 @@ class CardsController < ApplicationController
 
   def destroy
     @card = Card.find(params[:id])
-    @card.destroy
+    if @card.destroy
+      render "destroy.json.jbuilder", status: :ok
+    else
+      render json: {errors: @card.errors.full_messages},
+             status: :unprocessable_entity
+    end
   end
 
 
