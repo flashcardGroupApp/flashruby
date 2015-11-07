@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   before_validation :ensure_access_token!
 
   has_many :decks
+  has_many :guesses
 
   validates_presence_of :username
   validates_uniqueness_of :email, :username
