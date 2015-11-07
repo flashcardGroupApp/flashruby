@@ -3,7 +3,8 @@ class GuessController < ApplicationController
 
   def create
     @guess = Guess.new(user_id: current_user.id, card_id: params[:card_id],
-                       duration: params[:duration], correct: params[:correct])
+                       duration: params[:duration],
+                       correct: params[:correct] == "true" ? true : false)
 
     if @guess.save
       render "create.json.jbuilder", status: :created
