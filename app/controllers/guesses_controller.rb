@@ -1,4 +1,4 @@
-class GuessController < ApplicationController
+class GuessesController < ApplicationController
   before_action :authenticate_user!
 
   def create
@@ -15,10 +15,10 @@ class GuessController < ApplicationController
   end
 
   def show
-    #@guess = Guess.find(params[:id])
-    #@guess = Guess.find_by_deck_id(params[:id])
-    #@guess = Guess.joins(:cards)
-    @guess = Guess.joins('LEFT OUTER JOIN cards ON cards.id = guesses.card_id').where(cards: {deck_id: params[:id]})
+    join = 'LEFT OUTER JOIN cards ON cards.id = guesses.card_id'
+    search_params = {cards: {deck_id: params[:id]},
+                    guesses: {user_id: current_user.id}}
+    @guess = Guess.joins(join).where(search_params)
     render "show.json.jbuilder", status: :ok
   end
 end
