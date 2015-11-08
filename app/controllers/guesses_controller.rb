@@ -21,6 +21,11 @@ class GuessesController < ApplicationController
     @guess = Guess.joins(join).where(search_params)
     render "show.json.jbuilder", status: :ok
   end
+
+  def score
+    @score = Guess.where(user_id: current_user.id).count(:correct)
+    render "score.json.jbuilder", status: :ok
+  end
 end
 
 
