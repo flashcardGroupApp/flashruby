@@ -330,3 +330,15 @@ If the current user made guesses for the specified deck, you should receive a `2
   }
 ]
 ```
+
+## Get a user's score for a deck
+```
+GET /deck/:id/score
+```
+
+**Response**
+
+If the current user has a score for the specified deck, you should receive a `200 OK` status code, and a JSON body:
+```
+{"score":8}
+```
