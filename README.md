@@ -219,6 +219,31 @@ If the card was successfully found, you should receive a `200 OK` status code an
 }
 ```
 
+## Show all Cards in a Deck
+```
+GET /decks/:id/cards
+```
+
+**Response**
+
+If the specified deck has cards, you should receive a `200 OK` status code and a JSON body:
+```
+[
+  {
+    "id": 1,
+    "deck_id": 10,
+    "question": "This is a question",
+    "answer": "This is an answer"
+  },
+  {
+    "id": 3,
+    "deck_id": 10,
+    "question": "Question",
+    "answer": "Answer"
+  }
+]
+```
+
 ## Create a Card
 ```
 POST /deck/:id/cards

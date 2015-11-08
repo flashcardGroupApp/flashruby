@@ -1,0 +1,1 @@
+json.array! @cards, :id, :question, :answer

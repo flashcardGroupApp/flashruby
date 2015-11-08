@@ -6,6 +6,11 @@ class CardsController < ApplicationController
     render "show.json.jbuilder", status: :ok
   end
 
+ def index
+   @cards = Card.where(deck_id: params[:id])
+   render "index.json.jbuilder", status: :ok
+ end
+
   def create
     @deck = Deck.find(params[:id])
     @deck.cards.new(question: params[:question], answer: params[:answer])
