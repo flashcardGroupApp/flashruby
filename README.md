@@ -225,6 +225,7 @@ POST /deck/:id/cards
 ```
 
 **Params**
+
 `question`: `String`<br>
 `answer`: `String`
 
@@ -275,4 +276,69 @@ If the card was successfully deleted, you should receive a `200 OK` status code,
 {
     "delete": "Success"
 }
+```
+
+## Create a Guess
+```
+POST /cards/:id/guesses
+```
+
+**Params**
+
+`duration`: `Integer`<br>
+`correct`: `Boolean` (Default: `false`)
+
+Duration is the number of seconds it took for the user to answer. Correct is whether the submitted answer was correct (true) or shitty (false).
+
+**Response**
+
+If the guess was successfully created, you should receive a `201 Created` status code, and a JSON body:
+```
+{
+  "guess": {
+    "user_id": 6,
+    "card_id": null,
+    "duration": 10,
+    "correct": true
+  }
+}
+```
+
+## View all of a user's Guesses for a deck
+```
+GET /deck/:id/guesses
+```
+
+**Response**
+
+If the current user made guesses for the specified deck, you should receive a `200 OK` status code, and a JSON body:
+```
+[
+  {
+    "id": 4,
+    "card_id": 9,
+    "user_id": 6,
+    "duration": 55,
+    "correct": true
+  },
+  {
+    "id": 5,
+    "card_id": 10,
+    "user_id": 6,
+    "duration": 35,
+    "correct": false
+  }
+]
+```
+
+## Get a user's score for a deck
+```
+GET /deck/:id/score
+```
+
+**Response**
+
+If the current user has a score for the specified deck, you should receive a `200 OK` status code, and a JSON body:
+```
+{"score":8}
 ```

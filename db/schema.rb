@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20151106212101) do
   create_table "guesses", force: :cascade do |t|
     t.integer  "card_id"
     t.integer  "user_id"
-    t.time     "duration"
+    t.integer  "duration"
     t.boolean  "correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

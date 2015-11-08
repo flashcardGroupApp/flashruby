@@ -19,5 +19,6 @@ Rails.application.routes.draw do
 
   ## GUESS ROUTES
   get "deck/:id/guesses", to: "guesses#show", as: "guess"
-  post "deck/:id/guesses", to: "guesses#create"
+  post "cards/:id/guesses", to: "guesses#create"
+  get "deck/:id/score", to: "guesses#score"
 end
