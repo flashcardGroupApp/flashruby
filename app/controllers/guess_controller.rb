@@ -15,7 +15,10 @@ class GuessController < ApplicationController
   end
 
   def show
-    @guess = Guess.find(params[:id])
+    #@guess = Guess.find(params[:id])
+    #@guess = Guess.find_by_deck_id(params[:id])
+    #@guess = Guess.joins(:cards)
+    @guess = Guess.joins('LEFT OUTER JOIN cards ON cards.id = guesses.card_id').where(cards: {deck_id: params[:id]})
     render "show.json.jbuilder", status: :ok
   end
 end
